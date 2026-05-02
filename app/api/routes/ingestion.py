@@ -15,5 +15,5 @@ router = APIRouter()
 async def ingest(item: IngestionItem):
     result = process_payload(item.dict())
     if not result:
-        raise HTTPException(status_code=500, detail="Ingestion failed")
+        raise HTTPException(status_code=400, detail="Invalid payload")
     return {"status": "ok", "processed": result}

@@ -80,8 +80,20 @@ This will start:
   - Starts background ingestion for the specified platform and query
 - `GET /sentiment_summary`
   - Returns sentiment counts for stored posts
+- `GET /api/processed/`
+  - Lists saved processed JSON files
+- `GET /api/processed/latest`
+  - Returns the latest processed JSON payload
+- `ws://<host>/api/processed/live`
+  - Streams the latest processed JSON payload over WebSocket
+- `GET /api/analytics/report`
+  - Returns aggregated language and sentiment counts for Power BI
 
 ## Notes
+
+- Scraped raw JSON files are saved under `data/raw/`.
+- Flattened and processed JSON files are saved under `data/processed/`.
+- Power BI can consume the `/api/analytics/report` JSON endpoint directly.
 
 - The project currently uses a default Hugging Face sentiment pipeline. In production, pin the model explicitly and configure an HF token if needed.
 - Ensure `APIFY_TIKTOK_ACTOR_ID` is set to `coregent~tiktok-hashtag-scraper` for the TikTok hashtag scraper actor.
